@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Online_booking</string>
+    <string name="enter_name">Enter name</string>
+    <string name="enter_phone_number">Enter phone number</string>
+    <string name="enter_address">Enter address</string>
+    <string name="submit">Submit</string>
+</resources>
