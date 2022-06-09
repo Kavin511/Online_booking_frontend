@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -21,26 +21,14 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_margin="10dp"
+        android:inputType="phone"
         android:hint="@string/enter_phone_number"
         android:textSize="18sp" />
-
-    <EditText
-        android:id="@+id/address"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="10dp"
-        android:hint="@string/enter_address"
-        android:textSize="18sp" />
-
-    <Spinner
-        android:id="@+id/vehicleType"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="10dp" />
 
     <Button
         android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:text="@string/submit"
+        android:onClick="postBookingDetails"
         android:layout_height="wrap_content" />
 </LinearLayout>
