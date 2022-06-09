@@ -4,4 +4,6 @@
     <string name="enter_phone_number">Enter phone number</string>
     <string name="enter_address">Enter address</string>
     <string name="submit">Book service</string>
+    <string name="booking_history">Booking History</string>
+    <string name="loading_bookings">Loading bookings</string>
 </resources>

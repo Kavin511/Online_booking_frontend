@@ -1,9 +1,14 @@
 package com.devstudio.online_booking
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.devstudio.online_booking.databinding.ActivityMainBinding
 import com.devstudio.online_booking.model.UserDetails
 import com.devstudio.online_booking.repository.ServiceBookingRepository
@@ -20,7 +25,27 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        initialiseActionBar()
         initialise()
+    }
+
+    private fun initialiseActionBar() {
+        supportActionBar!!.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
+        supportActionBar!!.setDisplayShowCustomEnabled(true)
+        supportActionBar?.elevation = 0F
+        val actionbarLayout = R.layout.actionbar_layout
+        supportActionBar!!.setCustomView(actionbarLayout)
+        supportActionBar?.setBackgroundDrawable(
+            ContextCompat.getDrawable(
+                this,
+                R.drawable.action_bar_background
+            )
+        )
+        val bookingHistory = findViewById<ImageView>(R.id.booking_history)
+        bookingHistory.setOnClickListener {
+            val intent = Intent(this, HistoryActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun initialise() {
@@ -30,8 +55,7 @@ class MainActivity : AppCompatActivity() {
 
     fun postBookingDetails(view: View) {
         val userDetails = UserDetails()
-        val isAllFieldsAreValid =
-            binding.name.text.isNotEmpty() && binding.phone.text.isNotEmpty()
+        val isAllFieldsAreValid = binding.name.text.isNotEmpty() && binding.phone.text.isNotEmpty()
         if (isAllFieldsAreValid) {
             userDetails.name = binding.name.text.toString()
             userDetails.phoneNumber = binding.phone.text.toString()
