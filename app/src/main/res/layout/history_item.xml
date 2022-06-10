@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="2dp"
     android:padding="5dp"
+    android:background="@drawable/product_item_background"
     android:orientation="vertical">
 
     <TextView
