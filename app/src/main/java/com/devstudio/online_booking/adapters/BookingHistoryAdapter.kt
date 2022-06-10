@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.devstudio.online_booking.R
-import com.devstudio.online_booking.listeners.OnItemClickListener
+import com.devstudio.online_booking.model.BookingResponse
 import com.devstudio.online_booking.model.Bookings
 
 class BookingHistoryAdapter(
@@ -30,7 +30,8 @@ class BookingHistoryAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val entry = bookings[position]
         holder.bookingUserName.text = entry.customerName
-        holder.garageName.text = if (entry.garageId != 0L) "Garage Booked" else "Pending Allocation of Garage"
+        holder.garageName.text =
+            if (entry.garageId != 0L) "Garage Allocated!" else "Pending Allocation of Garage"
     }
 
     override fun getItemCount(): Int {

@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                     if ((response.body() as HashMap<String, Any>)["success"] as Boolean) {
                         Toast.makeText(
                             applicationContext,
-                            "Your service request is processed to" + ((response.body() as HashMap<String, Any>)["message"] as LinkedTreeMap<String, String>)["garageName"],
+                            ((response.body() as HashMap<String, Any>)["message"] as LinkedTreeMap<String, String>)["garage"],
                             Toast.LENGTH_SHORT
                         ).show()
                     } else {

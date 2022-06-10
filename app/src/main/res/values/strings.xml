@@ -6,4 +6,5 @@
     <string name="submit">Book service</string>
     <string name="booking_history">Booking History</string>
     <string name="loading_bookings">Loading bookings</string>
+    <string name="no_bookings">No bookings available</string>
 </resources>

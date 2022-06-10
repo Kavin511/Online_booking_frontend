@@ -2,6 +2,7 @@ package com.devstudio.online_booking
 
 import android.os.Bundle
 import android.view.View.GONE
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
@@ -14,7 +15,7 @@ import com.devstudio.online_booking.adapters.BookingHistoryAdapter
 import com.devstudio.online_booking.repository.ServiceBookingRepository
 import com.devstudio.online_booking.service.ServiceBookingService
 import com.devstudio.online_booking.viewmodels.BookingHistoryModelFactory
-import com.devstudio.zivame.viewmodels.BookingHistoryViewModel
+import com.devstudio.online_booking.viewmodels.BookingHistoryViewModel
 
 class HistoryActivity : AppCompatActivity() {
     private lateinit var loadingBooking: TextView
@@ -35,7 +36,7 @@ class HistoryActivity : AppCompatActivity() {
     private fun observeError(viewModel: BookingHistoryViewModel) {
         viewModel.errorMessage.observe(this) {
             progressBar.visibility = GONE
-            loadingBooking.text="Error while loading"
+            loadingBooking.text = "Error while loading bookings $it"
         }
     }
 
@@ -49,6 +50,7 @@ class HistoryActivity : AppCompatActivity() {
         val actionbarLayout = R.layout.actionbar_layout
         supportActionBar!!.setCustomView(actionbarLayout)
         findViewById<TextView>(R.id.title).text = getString(R.string.booking_history)
+        findViewById<ImageView>(R.id.booking_history).visibility = GONE
         supportActionBar?.setBackgroundDrawable(
             ContextCompat.getDrawable(
                 this,
@@ -69,17 +71,19 @@ class HistoryActivity : AppCompatActivity() {
         viewModel.fetchBookings()
         viewModel.bookingList.observe(this) {
             progressBar.visibility = GONE
-            adapter = BookingHistoryAdapter(
-                viewModel.bookingList.value ?: listOf(),
-                applicationContext,
-            )
+            if (it?.bookings == null) {
+                loadingBooking.text = getString(R.string.no_bookings)
+            } else {
+                loadingBooking.visibility = GONE
+            }
+            adapter = BookingHistoryAdapter(it?.bookings ?: listOf(), applicationContext)
             bookingList.adapter = adapter
         }
     }
 
     private fun initialiseBookingList(viewModel: BookingHistoryViewModel) {
         adapter = BookingHistoryAdapter(
-            viewModel.bookingList.value ?: listOf(),
+            viewModel.bookingList.value?.bookings ?: listOf(),
             applicationContext,
         )
         bookingList.adapter = adapter

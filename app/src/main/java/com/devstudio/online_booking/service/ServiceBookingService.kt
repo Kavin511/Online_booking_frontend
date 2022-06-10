@@ -1,6 +1,6 @@
 package com.devstudio.online_booking.service
 
-import com.devstudio.online_booking.model.Bookings
+import com.devstudio.online_booking.model.BookingResponse
 import com.devstudio.online_booking.model.UserDetails
 import com.devstudio.online_booking.repository.ServiceBookingRepository
 import retrofit2.Call
@@ -13,7 +13,7 @@ import retrofit2.http.POST
 
 interface ServiceBookingService {
     @GET("bookings")
-    fun getBookings(): Call<Bookings>
+    fun getBookings(): Call<BookingResponse>
 
     @Headers("Content-Type: application/json")
     @POST("bookings")
@@ -21,7 +21,7 @@ interface ServiceBookingService {
 
     companion object {
         private lateinit var bookingService: ServiceBookingService
-        private const val BASE_URL = "http://192.168.43.47:3000/"
+        private const val BASE_URL = "https://enigmatic-lowlands-66580.herokuapp.com/"
         fun getInstance(): ServiceBookingService {
             bookingService = Retrofit.Builder()
                 .baseUrl(BASE_URL)

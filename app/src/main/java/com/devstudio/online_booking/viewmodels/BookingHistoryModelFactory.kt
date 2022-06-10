@@ -3,7 +3,6 @@ package com.devstudio.online_booking.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.devstudio.online_booking.repository.ServiceBookingRepository
-import com.devstudio.zivame.viewmodels.BookingHistoryViewModel
 
 class BookingHistoryModelFactory constructor(private val repository: ServiceBookingRepository) :
     ViewModelProvider.Factory {
