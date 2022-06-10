@@ -71,6 +71,8 @@ class MainActivity : AppCompatActivity() {
                             ((response.body() as HashMap<String, Any>)["message"] as LinkedTreeMap<String, String>)["garage"],
                             Toast.LENGTH_SHORT
                         ).show()
+                        binding.name.setText("")
+                        binding.phone.setText("")
                     } else {
                         Toast.makeText(
                             applicationContext,
